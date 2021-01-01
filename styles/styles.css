@@ -9,7 +9,6 @@
 }
 
 .item {
-    flex-basis: auto;
     background-color: coral;
 }
 
@@ -17,10 +16,14 @@ h3 {
     text-align: center;
 }
 
+h1 {
+    text-align: center;
+}
+
 button {
-    padding: 5px;
-    width: 33%;
-    margin-left: 33%;
-    margin-right: 33%;
-    margin-top: 20px;
+    border-radius: 5px;
+}
+
+#ex1Slider .slider-selection {
+	background: #BABABA;
 }

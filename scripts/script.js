@@ -1,36 +1,50 @@
+// FEATURES TO IMPLEMENT
+// * Shading (each pass through adds, say 10% of black)
+// * User input: 1–100 squares per side
+// * Option for random RGB color
+// * add animation
+// * option to clear grid and ask for new stuff
+// * make responsive?? (bootstrap??)
+// * choose your own color?? (RGB sliders? RGB range?)
+// * mobile support w jQuery?? (Probably too much…)
+
 const container = document.querySelector('#container')
 const items = document.querySelectorAll('.item');
 let boxes = 500*500/5/5-1;
 let boxWidth = 5;
+let draw = 1;
 buildBox();
 
-
+// Without JQuery
+// slider from here: https://seiyria.com/bootstrap-slider/
+var slider = new Slider('#ex1', {
+	formatter: function(value) {
+		return value;
+	}
+});
 
 const smallButton = document.querySelector('#small');
 smallButton.addEventListener('click', function () {
     breakBox();
-    let boxWidth = 5;
+    boxWidth = 5;
     boxes = 500*500/boxWidth/boxWidth-1;
     buildBox();
-    // items.forEach(element => element.style.flexBasis = boxWidthString);
 });
 
 const mediumButton = document.querySelector('#medium');
 mediumButton.addEventListener('click', function () {
     breakBox();
-    let boxWidth = 10;
+    boxWidth = 10;
     boxes = 500*500/boxWidth/boxWidth-1;
     buildBox();
-    // items.forEach(element => element.style.flexBasis = boxWidthString);
 })
 
 const largeButton = document.querySelector('#large');
 largeButton.addEventListener('click', function () {
     breakBox();
-    let boxWidth = 50;
+    boxWidth = 50;
     boxes = 500*500/boxWidth/boxWidth-1;
     buildBox();
-    // items.forEach(element => element.style.flexBasis = boxWidthString);
 })
 
 function breakBox() {
@@ -48,17 +62,35 @@ function buildBox () {
         container.appendChild(item);
   }};
 
-// let container = document.getElementById("container");
+// Mouseover bubbles up through the DOM
+// this explains why you can turn the containing div cadet blue
+// mouseover event sent to deepest element of DOM tree
+// this explains how applying it to container makes it so the children get colored
+
 container.addEventListener("mouseover", function(event) {
-    event.target.style.background = "cadetblue";
+    if (draw) {event.target.style.background = "cadetblue";};
 });
 
+container.addEventListener("click", function () {
+    if (draw) {
+        draw = 0;
+    } else if (!draw) {
+        draw = 1;
+    } else {
+        alert ("Something’s gone horribly wrong.");
+    }});
+
+// “Mouseenter is sent to each element of the hierarchy when entering them”
+// Containing Div starts white
+// When mouse enters, it turns blanched almond
+// “is not sent to any descendants” when pointer enters its space
+
 container.addEventListener("mouseenter", function(event) {
-    event.target.style.background = "blanchedalmond";
+    if (draw) {event.target.style.background = "blanchedalmond";};
 });
 
 const resetButton = document.querySelector('#reset');
 resetButton.addEventListener('click', function () {
-    container.style.background = "coral";
-    items.forEach(element => element.style.background = "blanchedalmond");
+    breakBox();
+    buildBox();
 });
