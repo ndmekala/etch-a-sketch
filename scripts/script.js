@@ -23,6 +23,8 @@ var slider = new Slider('#ex1', {
 	}
 });
 
+// How to get the value from the slider?
+
 const smallButton = document.querySelector('#small');
 smallButton.addEventListener('click', function () {
     breakBox();
