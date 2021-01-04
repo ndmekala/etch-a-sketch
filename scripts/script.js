@@ -8,12 +8,12 @@
 // * choose your own color?? (RGB sliders? RGB range?)
 // * mobile support w jQuery?? (Probably too much…)
 
+// make build box a function of some integer…
+
 const container = document.querySelector('#container')
 const items = document.querySelectorAll('.item');
-let boxes = 500*500/5/5-1;
-let boxWidth = 5;
 let draw = 1;
-buildBox();
+buildBox(100);
 
 // Without JQuery
 // slider from here: https://seiyria.com/bootstrap-slider/
@@ -23,30 +23,36 @@ var slider = new Slider('#ex1', {
 	}
 });
 
+
+
 // How to get the value from the slider?
+// using "change" got it to run a function for each last tick… hmm…
 
 const smallButton = document.querySelector('#small');
 smallButton.addEventListener('click', function () {
     breakBox();
-    boxWidth = 5;
-    boxes = 500*500/boxWidth/boxWidth-1;
-    buildBox();
+    buildBox(100);
+    // boxWidth = 5;
+    // boxes = 500*500/boxWidth/boxWidth-1;
+    // buildBox();
 });
 
 const mediumButton = document.querySelector('#medium');
 mediumButton.addEventListener('click', function () {
     breakBox();
-    boxWidth = 10;
-    boxes = 500*500/boxWidth/boxWidth-1;
-    buildBox();
+    buildBox(50);
+    // boxWidth = 10;
+    // boxes = 500*500/boxWidth/boxWidth-1;
+    // buildBox();
 })
 
 const largeButton = document.querySelector('#large');
 largeButton.addEventListener('click', function () {
     breakBox();
-    boxWidth = 50;
-    boxes = 500*500/boxWidth/boxWidth-1;
-    buildBox();
+    buildBox(10);
+    // boxWidth = 50;
+    // boxes = 500*500/boxWidth/boxWidth-1;
+    // buildBox();
 })
 
 function breakBox() {
@@ -55,14 +61,23 @@ function breakBox() {
     }
 };
 
-function buildBox () {
-    for (let i = 0; i < boxes; i++) {
+function buildBox(int) {
+    for (let i = 0; i < int*int; i++) {
         const item = document.createElement('div');
         item.classList.add('item');
-        boxWidthString = boxWidth + "px";
-        item.style.flexBasis = boxWidthString;
+        item.style.flexBasis = 100/int + "%";
         container.appendChild(item);
-  }};
+    }
+}
+
+// function buildBox () {
+    // for (let i = 0; i < boxes; i++) {
+        // const item = document.createElement('div');
+        // item.classList.add('item');
+        // boxWidthString = boxWidth + "px";
+        // item.style.flexBasis = boxWidthString;
+        // container.appendChild(item);
+//   }};
 
 // Mouseover bubbles up through the DOM
 // this explains why you can turn the containing div cadet blue
@@ -76,10 +91,8 @@ container.addEventListener("mouseover", function(event) {
 container.addEventListener("click", function () {
     if (draw) {
         draw = 0;
-    } else if (!draw) {
-        draw = 1;
     } else {
-        alert ("Something’s gone horribly wrong.");
+        draw = 1;
     }});
 
 // “Mouseenter is sent to each element of the hierarchy when entering them”
@@ -91,8 +104,11 @@ container.addEventListener("mouseenter", function(event) {
     if (draw) {event.target.style.background = "blanchedalmond";};
 });
 
+
+//once we have a global variable we can use to get # of boxes, incorproate that var into a for loop that will reset the background color to "coral" for every single thingy
 const resetButton = document.querySelector('#reset');
 resetButton.addEventListener('click', function () {
-    breakBox();
-    buildBox();
+    document.getElementsByClassName('item')[0].style.background = "coral";
+    // breakBox();
+    // buildBox();
 });
