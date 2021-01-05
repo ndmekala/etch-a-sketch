@@ -1,60 +1,26 @@
 // FEATURES TO IMPLEMENT
-// * Shading (each pass through adds, say 10% of black)
-// * User input: 1–100 squares per side
-// * Option for random RGB color
-// * add animation
-// * option to clear grid and ask for new stuff
-// * make responsive?? (bootstrap??)
-// * choose your own color?? (RGB sliders? RGB range?)
-// * mobile support w jQuery?? (Probably too much…)
+// - [x] User input: 1–100 squares per side
+// - [x] add animation
+// - [x] option to clear grid and ask for new stuff
+// - [ ] make responsive?? (bootstrap??)
 
-// make build box a function of some integer…
+
+// COLOR SCHEMES
+// - [ ] choose your own color?? (RGB sliders? RGB range??)
+// - [ ] Option for random RGB color
+// - [ ] Shading (each pass through adds, say 10% of black)
 
 const container = document.querySelector('#container')
 const items = document.querySelectorAll('.item');
 let draw = 1;
+let mode = 1;
 buildBox(50);
-
-// Without JQuery
-// slider from here: https://seiyria.com/bootstrap-slider/
-// var slider = new Slider('#ex1', {
-// 	formatter: function(value) {
-// 		return value;
-// 	}
-// });
 
 let squaresWide = document.getElementById('squaresWide');
 squaresWide.addEventListener('change', function () {
     breakBox();
     buildBox(squaresWide.value);
 });
-
-const smallButton = document.querySelector('#small');
-smallButton.addEventListener('click', function () {
-    breakBox();
-    buildBox(100);
-    // boxWidth = 5;
-    // boxes = 500*500/boxWidth/boxWidth-1;
-    // buildBox();
-});
-
-const mediumButton = document.querySelector('#medium');
-mediumButton.addEventListener('click', function () {
-    breakBox();
-    buildBox(50);
-    // boxWidth = 10;
-    // boxes = 500*500/boxWidth/boxWidth-1;
-    // buildBox();
-})
-
-const largeButton = document.querySelector('#large');
-largeButton.addEventListener('click', function () {
-    breakBox();
-    buildBox(10);
-    // boxWidth = 50;
-    // boxes = 500*500/boxWidth/boxWidth-1;
-    // buildBox();
-})
 
 function breakBox() {
     while (container.firstChild) {
@@ -66,29 +32,78 @@ function buildBox(int) {
     for (let i = 0; i < int*int; i++) {
         const item = document.createElement('div');
         item.classList.add('item');
+        item.classList.add('notMousedOver');
+        item.style.background = backgroundColorIs(mode);
         item.style.flexBasis = 100/int + "%";
         container.appendChild(item);
     }
 }
 
-// function buildBox () {
-    // for (let i = 0; i < boxes; i++) {
-        // const item = document.createElement('div');
-        // item.classList.add('item');
-        // boxWidthString = boxWidth + "px";
-        // item.style.flexBasis = boxWidthString;
-        // container.appendChild(item);
-//   }};
+function backgroundColorIs(int) {
+    let color;
+    if (int === 1 ) {
+        color = "blanchedalmond";
+        return color;
+    } else if (int === 2 || int === 3 || int === 4) {
+        color = "white";
+        return color;
+    };
+}
 
-// Mouseover bubbles up through the DOM
-// this explains why you can turn the containing div cadet blue
-// mouseover event sent to deepest element of DOM tree
-// this explains how applying it to container makes it so the children get colored
+function mouseOverColorIs(int) {
+    let color;
+    if (int === 1) {
+        color = "brown";
+        return color;
+    } else if (int === 2) {
+        color = "black";
+        return color;
+    } else if (int === 3) {
+        let r = Math.floor(Math.random() * 255);
+        let g = Math.floor(Math.random() * 255);
+        let b = Math.floor(Math.random() * 255);
+        color = "rgb(" + r + ", " + g + ", " + b + ")";
+        return color;
+    } else if (int === 4) {
+        let r = 255;
+        let g = 0;
+        let b = 0;
+        color = "rgb(" + r + ", " + g + ", " + b + ")";
+        return color;
+    }
+}
 
-container.addEventListener("mouseover", function(event) {
-    if (draw) {event.target.style.background = "cadetblue";};
+// EVENT LISTENERS FOR COLOR SCHEME BUTTONS
+const beigescale = document.querySelector('#beigescale');
+beigescale.addEventListener('click', function () {
+    mode = 1;
 });
 
+const grayscale = document.querySelector('#grayscale');
+grayscale.addEventListener('click', function () {
+    mode = 2;
+});
+
+const rainbow = document.querySelector('#rainbow');
+rainbow.addEventListener('click', function () {
+    mode = 3;
+});
+
+const choose = document.querySelector('#choose');
+choose.addEventListener('click', function () {
+    mode = 4;
+});
+
+// DRAWING EVENT LISTENER
+container.addEventListener("mouseover", function(event) {
+    if (draw) {
+        event.target.classList.remove('notMousedOver');
+        event.target.classList.add('mousedOver');
+        event.target.style.background = mouseOverColorIs(mode);
+    };
+});
+
+// EVENT LISTENER FOR TOGGLING DRAWING
 container.addEventListener("click", function () {
     if (draw) {
         draw = 0;
@@ -96,23 +111,17 @@ container.addEventListener("click", function () {
         draw = 1;
     }});
 
-// “Mouseenter is sent to each element of the hierarchy when entering them”
-// Containing Div starts white
-// When mouse enters, it turns blanched almond
-// “is not sent to any descendants” when pointer enters its space
-
-container.addEventListener("mouseenter", function(event) {
-    if (draw) {event.target.style.background = "blanchedalmond";};
-});
-
 
 //once we have a global variable we can use to get # of boxes, incorproate that var into a for loop that will reset the background color to "coral" for every single thingy
+// the = "" is super sketch… brings out the containing div which is secretely colored behind there…
 const resetButton = document.querySelector('#reset');
 resetButton.addEventListener('click', function () {
     let area = squaresWide.value*squaresWide.value
     for (i = 0; i < area; i++) {
-    document.getElementsByClassName('item')[i].style.background = "coral";
+    document.getElementsByClassName('item')[i].style.background = "";
     }
-    // breakBox();
-    // buildBox();
 });
+
+// Reset button should give you a blank screen in the color scheme that you’re in
+// grid size should give you a blank screen in the color scheme that you’re in
+// it would be cool if each color scheme button changed the color scheme of what you had painted…

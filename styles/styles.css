@@ -6,10 +6,19 @@
     margin-right: auto;
     width: 500px;
     height: 500px;
+    border: 1px solid black;
 }
 
 .item {
-    background-color: coral;
+    transition: 0.4s;
+}
+
+.notMousedOver {
+
+}
+
+.mousedOver {
+    background-color: cadetblue;
 }
 
 h3 {
@@ -20,10 +29,10 @@ h1 {
     text-align: center;
 }
 
-/* button {
-    border-radius: 5px;
-} */
-
-/* #ex1Slider .slider-selection {
-	background: #BABABA;
-} */
+#squaresWide {
+    writing-mode: bt-lr;
+    -webkit-appearance: slider-vertical;
+    width: 8px;
+    height: 175px;
+    padding: 0 5px;
+}
