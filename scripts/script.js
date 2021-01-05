@@ -13,20 +13,21 @@
 const container = document.querySelector('#container')
 const items = document.querySelectorAll('.item');
 let draw = 1;
-buildBox(100);
+buildBox(50);
 
 // Without JQuery
 // slider from here: https://seiyria.com/bootstrap-slider/
-var slider = new Slider('#ex1', {
-	formatter: function(value) {
-		return value;
-	}
+// var slider = new Slider('#ex1', {
+// 	formatter: function(value) {
+// 		return value;
+// 	}
+// });
+
+let squaresWide = document.getElementById('squaresWide');
+squaresWide.addEventListener('change', function () {
+    breakBox();
+    buildBox(squaresWide.value);
 });
-
-
-
-// How to get the value from the slider?
-// using "change" got it to run a function for each last tick… hmm…
 
 const smallButton = document.querySelector('#small');
 smallButton.addEventListener('click', function () {
@@ -108,7 +109,10 @@ container.addEventListener("mouseenter", function(event) {
 //once we have a global variable we can use to get # of boxes, incorproate that var into a for loop that will reset the background color to "coral" for every single thingy
 const resetButton = document.querySelector('#reset');
 resetButton.addEventListener('click', function () {
-    document.getElementsByClassName('item')[0].style.background = "coral";
+    let area = squaresWide.value*squaresWide.value
+    for (i = 0; i < area; i++) {
+    document.getElementsByClassName('item')[i].style.background = "coral";
+    }
     // breakBox();
     // buildBox();
 });
