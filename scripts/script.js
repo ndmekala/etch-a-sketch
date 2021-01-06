@@ -77,6 +77,7 @@ function mouseOverColorIs(int) {
     }
 }
 
+// Make a function that takes the RGB value, splices the string, figures out a value, adds to it, and constructs a new RGB strings??
 function rgbTo
 
 // EVENT LISTENERS FOR COLOR SCHEME BUTTONS
