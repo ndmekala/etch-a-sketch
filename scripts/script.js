@@ -6,16 +6,20 @@
 
 
 // COLOR SCHEMES
-// - [ ] choose your own color?? (RGB sliders? RGB range??)
-// - [ ] Option for random RGB color
+// - [x] choose your own color?? (RGB sliders? RGB range??)
+// - [x] Option for random RGB color
 // - [ ] Shading (each pass through adds, say 10% of black)
 
 const container = document.querySelector('#container')
 const items = document.querySelectorAll('.item');
+let redSlider = document.getElementById('red');
+let greenSlider = document.getElementById('green');
+let blueSlider = document.getElementById('blue');
 let draw = 1;
 let mode = 1;
 buildBox(50);
 
+// EVENT LISTENER FOR RESOLUTION
 let squaresWide = document.getElementById('squaresWide');
 squaresWide.addEventListener('change', function () {
     breakBox();
@@ -56,7 +60,7 @@ function mouseOverColorIs(int) {
         color = "brown";
         return color;
     } else if (int === 2) {
-        color = "black";
+        color = "#bbb";
         return color;
     } else if (int === 3) {
         let r = Math.floor(Math.random() * 255);
@@ -65,13 +69,15 @@ function mouseOverColorIs(int) {
         color = "rgb(" + r + ", " + g + ", " + b + ")";
         return color;
     } else if (int === 4) {
-        let r = 255;
-        let g = 0;
-        let b = 0;
+        let r = redSlider.value;
+        let g = greenSlider.value;
+        let b = blueSlider.value;
         color = "rgb(" + r + ", " + g + ", " + b + ")";
         return color;
     }
 }
+
+function rgbTo
 
 // EVENT LISTENERS FOR COLOR SCHEME BUTTONS
 const beigescale = document.querySelector('#beigescale');
@@ -95,11 +101,21 @@ choose.addEventListener('click', function () {
 });
 
 // DRAWING EVENT LISTENER
+// how am i gonna get it to shade??
 container.addEventListener("mouseover", function(event) {
     if (draw) {
-        event.target.classList.remove('notMousedOver');
-        event.target.classList.add('mousedOver');
-        event.target.style.background = mouseOverColorIs(mode);
+        if (mode === 2) {
+            event.target.classList.remove('notMousedOver');
+            event.target.classList.add('mousedOver');
+            event.target.style.background = mouseOverColorIs(mode);
+            console.log(event.target.style.background);
+        }
+        else if (mode === 3 || mode === 4) {
+            event.target.classList.remove('notMousedOver');
+            event.target.classList.add('mousedOver');
+            event.target.style.background = mouseOverColorIs(mode);
+        }
+        
     };
 });
 
