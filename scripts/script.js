@@ -57,10 +57,12 @@ function backgroundColorIs(int) {
 function mouseOverColorIs(int) {
     let color;
     if (int === 1) {
-        color = "brown";
+        // https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2ee7c083620145.5d41e47b72383.jpg
+        // could have base color be lightest tone, and use ifs to cycle through darker tones
+        color = "rgb(139,69,19)";
         return color;
     } else if (int === 2) {
-        color = "#bbb";
+        color = "rgb(240, 240, 240)";
         return color;
     } else if (int === 3) {
         let r = Math.floor(Math.random() * 255);
@@ -78,43 +80,88 @@ function mouseOverColorIs(int) {
 }
 
 // Make a function that takes the RGB value, splices the string, figures out a value, adds to it, and constructs a new RGB strings??
-function rgbTo
+function rgbToNumber(string) {
+    let noRGB = string.substring(4);
+    let rgbNumber = ""
+    for (i = 0; i < 4; i++) {
+        if (Number(noRGB[i] === ",")) { break; };
+        rgbNumber += noRGB[i];
+    }
+    return Number(rgbNumber);
+    
+}
 
 // EVENT LISTENERS FOR COLOR SCHEME BUTTONS
+// Producing some quirks: hitting rainbow resets all rainbow colors… you can paint with different colors using “choose” until you hit “choose again” and it shifts all colored cells to the selcted color
+// another quirk: when you hit “choose” and its in grayscale, it undoes all shading.
+// possible solution: add a “special” or “noTouchy” class to circumvent setting all to mouseOverColorIs(mode);
 const beigescale = document.querySelector('#beigescale');
 beigescale.addEventListener('click', function () {
     mode = 1;
+    for (i = 0; i < document.getElementsByClassName('notMousedOver').length; i++) {
+        document.getElementsByClassName('notMousedOver')[i].style.background = backgroundColorIs(mode);
+        }
+    for (i = 0; i < document.getElementsByClassName('mousedOver').length; i++) {
+        document.getElementsByClassName('mousedOver')[i].style.background = mouseOverColorIs(mode);
+        }
 });
 
 const grayscale = document.querySelector('#grayscale');
 grayscale.addEventListener('click', function () {
     mode = 2;
+    for (i = 0; i < document.getElementsByClassName('notMousedOver').length; i++) {
+        document.getElementsByClassName('notMousedOver')[i].style.background = backgroundColorIs(mode);
+        }
+    for (i = 0; i < document.getElementsByClassName('mousedOver').length; i++) {
+        document.getElementsByClassName('mousedOver')[i].style.background = mouseOverColorIs(mode);
+        }
 });
 
 const rainbow = document.querySelector('#rainbow');
 rainbow.addEventListener('click', function () {
     mode = 3;
+    for (i = 0; i < document.getElementsByClassName('notMousedOver').length; i++) {
+        document.getElementsByClassName('notMousedOver')[i].style.background = backgroundColorIs(mode);
+        }
+    for (i = 0; i < document.getElementsByClassName('mousedOver').length; i++) {
+        document.getElementsByClassName('mousedOver')[i].style.background = mouseOverColorIs(mode);
+        }
 });
 
 const choose = document.querySelector('#choose');
 choose.addEventListener('click', function () {
     mode = 4;
+    for (i = 0; i < document.getElementsByClassName('notMousedOver').length; i++) {
+        document.getElementsByClassName('notMousedOver')[i].style.background = backgroundColorIs(mode);
+        }
+    for (i = 0; i < document.getElementsByClassName('mousedOver').length; i++) {
+        document.getElementsByClassName('mousedOver')[i].style.background = mouseOverColorIs(mode);
+        }
 });
 
 // DRAWING EVENT LISTENER
-// how am i gonna get it to shade??
 container.addEventListener("mouseover", function(event) {
     if (draw) {
         if (mode === 2) {
+            if (JSON.stringify(event.target.classList).search("mousedOver") === -1) {
+                event.target.classList.remove('notMousedOver');
+                event.target.classList.add('mousedOver');
+                event.target.style.background = mouseOverColorIs(mode);
+                console.log("hi");
+            } else {
+                console.log(event.target.style.background);
+                console.log(rgbToNumber(event.target.style.background));
+                event.target.style.background = "rgb( " + (rgbToNumber(event.target.style.background)-25) + ", " + 
+                                                          (rgbToNumber(event.target.style.background)-25) + ", " +
+                                                          (rgbToNumber(event.target.style.background)-25) + ")";
+                console.log(event.target.style.background);
+            }
+        }
+        else if (mode === 1 || mode === 3 || mode === 4) {
             event.target.classList.remove('notMousedOver');
             event.target.classList.add('mousedOver');
             event.target.style.background = mouseOverColorIs(mode);
             console.log(event.target.style.background);
-        }
-        else if (mode === 3 || mode === 4) {
-            event.target.classList.remove('notMousedOver');
-            event.target.classList.add('mousedOver');
-            event.target.style.background = mouseOverColorIs(mode);
         }
         
     };
@@ -135,7 +182,9 @@ const resetButton = document.querySelector('#reset');
 resetButton.addEventListener('click', function () {
     let area = squaresWide.value*squaresWide.value
     for (i = 0; i < area; i++) {
-    document.getElementsByClassName('item')[i].style.background = "";
+    document.getElementsByClassName('item')[i].style.background = backgroundColorIs(mode);
+    document.getElementsByClassName('item')[i].classList.add('notMousedOver');
+    document.getElementsByClassName('item')[i].classList.remove('mousedOver');
     }
 });
 
