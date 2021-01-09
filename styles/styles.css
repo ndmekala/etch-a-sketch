@@ -5,14 +5,19 @@
     flex-wrap: wrap;
     margin-left: auto;
     margin-right: auto;
-    width: 500px;
-    height: 500px;
-    border: 1px solid black;
+    width: 700px;
+    height: 700px;
 }
 
 .item {
     transition: 0.4s;
 }
+
+mark {
+    display: inline-block;
+    line-height: 0em;
+    padding-bottom: 0.2em;
+  }
 
 .notMousedOver {
 
@@ -23,10 +28,14 @@
 
 h3 {
     text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 200;
 }
 
 h1 {
     text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 200;
 }
 
 #squaresWide {

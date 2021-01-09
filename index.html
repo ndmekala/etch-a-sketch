@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
@@ -13,11 +15,22 @@
         <p>Click while in box to toggle drawing.</p>
     </div>
     <div id="controls">
-        <h1><span>C</span><span>o</span>ntrols</h1>
+        <h1>
+            <mark>
+                <span id="letter1">C</span>
+                <span id="letter2">o</span>
+                <span id="letter3">n</span>
+                <span id="letter4">t</span>
+                <span id="letter5">r</span>
+                <span id="letter6">o</span>
+                <span id="letter7">l</span>
+                <span id="letter8">s</span>
+                </mark>
+        </h1>
             <button id="reset">Reset!</button>
-        <h3>Grid Size</h3>
+        <h3><mark>Grid Size</mark></h3>
             <p><input type="range" orient="vertical" id="squaresWide" name="squaresWide" min="1" max="100" value="29"><label for="squaresWide">Resolution</label></p>
-        <h3>Color Scheme</h3>
+        <h3><mark>Color Scheme</mark></h3>
             <p><button id="grayscale">Grayscale</button></p>
             <p><button id="rainbow">Rainbow</button></p>
             <p><button id="choose">Choose</button></p>

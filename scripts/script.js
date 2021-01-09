@@ -23,6 +23,7 @@ landingImage();
 
 //SET OPENING PAGE IMAGE
 function landingImage() {
+    // First I did it manually…
     let qrDesign = [
         // top side, outer square, top left
         0, 1, 2, 3, 4, 5, 6,
@@ -67,9 +68,10 @@ function landingImage() {
         // bottom row, inner square, bottom left
         29*(29-3)+2, 29*(29-3)+3, 29*(29-3)+4, 
     ]
-    let qrRandom = []
-    // for first eight rows…
-    for (i=0; i <= 7; i++) {
+    //Then I had the bright idea of for loops…
+    let qrRandom = [];
+    // for first seven rows…
+    for (i=0; i <= 6; i++) {
         // for columns 8–21…
         for (j=0; j <= 12; j++) {
             qrRandom.push(29*i+8+j)
@@ -77,11 +79,15 @@ function landingImage() {
     }
     // for rows 8–21
     for (i=0; i <= 12; i++) {
-        // for columns 0-29…
-        for (j=0; j <= 28; j++) {
-            qrRandom.push(29*(i+8)+j)
+        // for columns 0-2…
+        for (j=0; j <= 2; j++) {
+            qrRandom.push(29*(i+8)+j)}
+        // for columns 27-29…
+        for (j=0; j <= 2; j++) {
+            qrRandom.push(29*(i+8)+j+26)
         }
     }
+    
     // for rows 23–29
     for (i=0; i <= 7; i++) {
         // for colums 8–29
@@ -89,14 +95,78 @@ function landingImage() {
             qrRandom.push(29*(i+21)+8+j)
         }
     }
-    console.log(qrRandom);
-    for (i=0; i <= document.getElementsByClassName('item').length; i++) {
+    let qrText = [];
+    //then i realized I could use functions…
+    function drawVerticalLineText(x,y,length) {
+        for (i=0; i < length; i++) {
+            qrText.push(29*(y+1+i)+x);
+        }
+    }
+    //P
+    drawVerticalLineText(5,7,5);
+    drawVerticalLineText(6,7,1);
+    drawVerticalLineText(6,9,1);
+    drawVerticalLineText(7,7,1);
+    drawVerticalLineText(7,9,1);
+    drawVerticalLineText(8,8,1);
+    //I
+    drawVerticalLineText(10,7,5);
+    //X
+    drawVerticalLineText(12,7,2);
+    drawVerticalLineText(12,10,2);
+    drawVerticalLineText(13,9,1);
+    drawVerticalLineText(14,7,2);
+    drawVerticalLineText(14,10,2);
+    //E
+    drawVerticalLineText(16,7,5);
+    drawVerticalLineText(17,7,1);
+    drawVerticalLineText(17,9,1);
+    drawVerticalLineText(17,11,1);
+    drawVerticalLineText(18,7,1);
+    drawVerticalLineText(18,9,1);
+    drawVerticalLineText(18,11,1);
+    drawVerticalLineText(19,7,1);
+    drawVerticalLineText(19,11,1);
+    //L
+    drawVerticalLineText(21,7,5);
+    drawVerticalLineText(22,11,1);
+    drawVerticalLineText(23,11,1);
+    //D
+    drawVerticalLineText(5,14,5);
+    drawVerticalLineText(6,14,1);
+    drawVerticalLineText(6,18,1);
+    drawVerticalLineText(7,14,1);
+    drawVerticalLineText(7,18,1);
+    drawVerticalLineText(8,15,3);
+    //R
+    drawVerticalLineText(10,14,5);
+    drawVerticalLineText(11,14,1);
+    drawVerticalLineText(11,16,1);
+    drawVerticalLineText(12,14,1);
+    drawVerticalLineText(12,16,1);
+    drawVerticalLineText(13,15,1);
+    drawVerticalLineText(13,17,2);
+    //A
+    drawVerticalLineText(15,15,4);
+    drawVerticalLineText(16,14,1);
+    drawVerticalLineText(16,16,1);
+    drawVerticalLineText(17,15,4);
+    //W
+    drawVerticalLineText(19,14,4);
+    drawVerticalLineText(20,18,1);
+    drawVerticalLineText(21,17,1);
+    drawVerticalLineText(22,18,1);
+    drawVerticalLineText(23,14,4);
+    for (i=0; i < document.getElementsByClassName('item').length; i++) {
         if (qrDesign.includes(i)) {
             document.getElementsByClassName('item')[i].style.background = "rgb(0, 0, 0)";
         }
         if (qrRandom.includes(i)) {
-            randomizer = Math.floor(Math.random()*2)
+            let randomizer = Math.floor(Math.random()*2)
             if (randomizer) {document.getElementsByClassName('item')[i].style.background = "rgb(0, 0, 0)";}
+        }
+        if (qrText.includes(i)) {
+            document.getElementsByClassName('item')[i].style.background = "rgb(0, 255, 0)";
         }
     }
 }
@@ -106,6 +176,41 @@ let squaresWide = document.getElementById('squaresWide');
 squaresWide.addEventListener('change', function () {
     breakBox();
     buildBox(squaresWide.value);
+});
+
+// EVENT LISTENERS FOR RGB SLIDER
+//bout to be qUirKy (like should it change when you arent in the mode??)
+redSlider.addEventListener('input', function() {
+    document.getElementById("letter1").style.color = mouseOverColorIs(3);
+    document.getElementById("letter2").style.color = mouseOverColorIs(3);
+    document.getElementById("letter3").style.color = mouseOverColorIs(3);
+    document.getElementById("letter4").style.color = mouseOverColorIs(3);
+    document.getElementById("letter5").style.color = mouseOverColorIs(3);
+    document.getElementById("letter6").style.color = mouseOverColorIs(3);
+    document.getElementById("letter7").style.color = mouseOverColorIs(3);
+    document.getElementById("letter8").style.color = mouseOverColorIs(3);
+});
+
+greenSlider.addEventListener('change', function() {
+    document.getElementById("letter1").style.color = mouseOverColorIs(3);
+    document.getElementById("letter2").style.color = mouseOverColorIs(3);
+    document.getElementById("letter3").style.color = mouseOverColorIs(3);
+    document.getElementById("letter4").style.color = mouseOverColorIs(3);
+    document.getElementById("letter5").style.color = mouseOverColorIs(3);
+    document.getElementById("letter6").style.color = mouseOverColorIs(3);
+    document.getElementById("letter7").style.color = mouseOverColorIs(3);
+    document.getElementById("letter8").style.color = mouseOverColorIs(3);
+});
+
+blueSlider.addEventListener('change', function() {
+    document.getElementById("letter1").style.color = mouseOverColorIs(3);
+    document.getElementById("letter2").style.color = mouseOverColorIs(3);
+    document.getElementById("letter3").style.color = mouseOverColorIs(3);
+    document.getElementById("letter4").style.color = mouseOverColorIs(3);
+    document.getElementById("letter5").style.color = mouseOverColorIs(3);
+    document.getElementById("letter6").style.color = mouseOverColorIs(3);
+    document.getElementById("letter7").style.color = mouseOverColorIs(3);
+    document.getElementById("letter8").style.color = mouseOverColorIs(3);
 });
 
 function breakBox() {
@@ -164,6 +269,7 @@ function rgbToNumber(string) {
     
 }
 
+
 // EVENT LISTENERS FOR COLOR SCHEME BUTTONS
 // Producing some quirks: hitting rainbow resets all rainbow colors… you can paint with different colors using “choose” until you hit “choose again” and it shifts all colored cells to the selcted color
 // another quirk: when you hit “choose” and its in grayscale, it undoes all shading.
@@ -191,6 +297,14 @@ rainbow.addEventListener('click', function () {
         for (i = 0; i < document.getElementsByClassName('mousedOver').length; i++) {
             document.getElementsByClassName('mousedOver')[i].style.background = mouseOverColorIs(mode);
             }
+        document.getElementById("letter1").style.color = mouseOverColorIs(mode);
+        document.getElementById("letter2").style.color = mouseOverColorIs(mode);
+        document.getElementById("letter3").style.color = mouseOverColorIs(mode);
+        document.getElementById("letter4").style.color = mouseOverColorIs(mode);
+        document.getElementById("letter5").style.color = mouseOverColorIs(mode);
+        document.getElementById("letter6").style.color = mouseOverColorIs(mode);
+        document.getElementById("letter7").style.color = mouseOverColorIs(mode);
+        document.getElementById("letter8").style.color = mouseOverColorIs(mode);
     }
 });
 
@@ -249,8 +363,6 @@ container.addEventListener("click", function () {
     }});
 
 
-//once we have a global variable we can use to get # of boxes, incorproate that var into a for loop that will reset the background color to "coral" for every single thingy
-// the = "" is super sketch… brings out the containing div which is secretely colored behind there…
 const resetButton = document.querySelector('#reset');
 resetButton.addEventListener('click', function () {
     let area = squaresWide.value*squaresWide.value
@@ -260,7 +372,3 @@ resetButton.addEventListener('click', function () {
     document.getElementsByClassName('item')[i].classList.remove('mousedOver');
     }
 });
-
-// Reset button should give you a blank screen in the color scheme that you’re in
-// grid size should give you a blank screen in the color scheme that you’re in
-// it would be cool if each color scheme button changed the color scheme of what you had painted…
