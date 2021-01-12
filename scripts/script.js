@@ -16,10 +16,19 @@ const items = document.querySelectorAll('.item');
 let redSlider = document.getElementById('red');
 let greenSlider = document.getElementById('green');
 let blueSlider = document.getElementById('blue');
-let draw = 0;
+let on = 0;
 let mode = 1;
+let eraser = 0;
 buildBox(29);
 landingImage();
+container.classList.add('biganimate');
+container.addEventListener('animationend', () => {
+    for (i=0; i < 29*29; i++) {
+        document.getElementsByClassName('item')[i].style.background = "rgb(255, 255, 255)";}
+});
+
+//EVENT LISTENER FOR ERASER BUTTON
+
 
 //SET OPENING PAGE IMAGE
 function landingImage() {
@@ -171,6 +180,8 @@ function landingImage() {
     }
 }
 
+
+
 // EVENT LISTENER FOR RESOLUTION
 let squaresWide = document.getElementById('squaresWide');
 squaresWide.addEventListener('change', function () {
@@ -189,6 +200,7 @@ redSlider.addEventListener('input', function() {
     document.getElementById("letter6").style.color = mouseOverColorIs(3);
     document.getElementById("letter7").style.color = mouseOverColorIs(3);
     document.getElementById("letter8").style.color = mouseOverColorIs(3);
+    document.getElementById("letter9").style.color = mouseOverColorIs(3);
 });
 
 greenSlider.addEventListener('change', function() {
@@ -200,6 +212,7 @@ greenSlider.addEventListener('change', function() {
     document.getElementById("letter6").style.color = mouseOverColorIs(3);
     document.getElementById("letter7").style.color = mouseOverColorIs(3);
     document.getElementById("letter8").style.color = mouseOverColorIs(3);
+    document.getElementById("letter9").style.color = mouseOverColorIs(3);
 });
 
 blueSlider.addEventListener('change', function() {
@@ -211,6 +224,7 @@ blueSlider.addEventListener('change', function() {
     document.getElementById("letter6").style.color = mouseOverColorIs(3);
     document.getElementById("letter7").style.color = mouseOverColorIs(3);
     document.getElementById("letter8").style.color = mouseOverColorIs(3);
+    document.getElementById("letter9").style.color = mouseOverColorIs(3);
 });
 
 function breakBox() {
@@ -276,7 +290,17 @@ function rgbToNumber(string) {
 // possible solution: add a “special” or “noTouchy” class to circumvent setting all to mouseOverColorIs(mode);
 const grayscale = document.querySelector('#grayscale');
 grayscale.addEventListener('click', function () {
+        document.getElementById("letter1").style.color = "rgb(225, 225, 225)";
+        document.getElementById("letter2").style.color = "rgb(175, 175, 175)";
+        document.getElementById("letter3").style.color = "rgb(125, 125, 125)";
+        document.getElementById("letter4").style.color = "rgb(75, 75, 75)";
+        document.getElementById("letter5").style.color = "rgb(25, 25, 25)";
+        document.getElementById("letter6").style.color = "rgb(75, 75, 75)";
+        document.getElementById("letter7").style.color = "rgb(125, 125, 125)";
+        document.getElementById("letter8").style.color = "rgb(175, 175, 175)";
+        document.getElementById("letter9").style.color = "rgb(225, 225, 225)";
     if (mode !== 1) {
+        
         mode = 1;
         for (i = 0; i < document.getElementsByClassName('notMousedOver').length; i++) {
             document.getElementsByClassName('notMousedOver')[i].style.background = backgroundColorIs(mode);
@@ -285,31 +309,41 @@ grayscale.addEventListener('click', function () {
             document.getElementsByClassName('mousedOver')[i].style.background = mouseOverColorIs(mode);
             }
     }    
+
+// CLICK and change to grayscale
 });
 
 const rainbow = document.querySelector('#rainbow');
 rainbow.addEventListener('click', function () {
-    if (mode !==2) {
-        mode = 2;
-        for (i = 0; i < document.getElementsByClassName('notMousedOver').length; i++) {
-            document.getElementsByClassName('notMousedOver')[i].style.background = backgroundColorIs(mode);
-            }
-        for (i = 0; i < document.getElementsByClassName('mousedOver').length; i++) {
-            document.getElementsByClassName('mousedOver')[i].style.background = mouseOverColorIs(mode);
-            }
-        document.getElementById("letter1").style.color = mouseOverColorIs(mode);
-        document.getElementById("letter2").style.color = mouseOverColorIs(mode);
-        document.getElementById("letter3").style.color = mouseOverColorIs(mode);
-        document.getElementById("letter4").style.color = mouseOverColorIs(mode);
-        document.getElementById("letter5").style.color = mouseOverColorIs(mode);
-        document.getElementById("letter6").style.color = mouseOverColorIs(mode);
-        document.getElementById("letter7").style.color = mouseOverColorIs(mode);
-        document.getElementById("letter8").style.color = mouseOverColorIs(mode);
-    }
+    mode = 2;
+    document.getElementById("letter1").style.color = mouseOverColorIs(2);
+    document.getElementById("letter2").style.color = mouseOverColorIs(2);
+    document.getElementById("letter3").style.color = mouseOverColorIs(2);
+    document.getElementById("letter4").style.color = mouseOverColorIs(2);
+    document.getElementById("letter5").style.color = mouseOverColorIs(2);
+    document.getElementById("letter6").style.color = mouseOverColorIs(2);
+    document.getElementById("letter7").style.color = mouseOverColorIs(2);
+    document.getElementById("letter8").style.color = mouseOverColorIs(2);
+    document.getElementById("letter9").style.color = mouseOverColorIs(2);
+    for (i = 0; i < document.getElementsByClassName('notMousedOver').length; i++) {
+        document.getElementsByClassName('notMousedOver')[i].style.background = backgroundColorIs(mode);
+        }
+    for (i = 0; i < document.getElementsByClassName('mousedOver').length; i++) {
+        document.getElementsByClassName('mousedOver')[i].style.background = mouseOverColorIs(mode);
+        }
 });
 
 const choose = document.querySelector('#choose');
 choose.addEventListener('click', function () {
+    document.getElementById("letter1").style.color = mouseOverColorIs(3);
+    document.getElementById("letter3").style.color = mouseOverColorIs(3);
+    document.getElementById("letter2").style.color = mouseOverColorIs(3);
+    document.getElementById("letter4").style.color = mouseOverColorIs(3);
+    document.getElementById("letter5").style.color = mouseOverColorIs(3);
+    document.getElementById("letter6").style.color = mouseOverColorIs(3);
+    document.getElementById("letter7").style.color = mouseOverColorIs(3);
+    document.getElementById("letter8").style.color = mouseOverColorIs(3);
+    document.getElementById("letter9").style.color = mouseOverColorIs(3);
     if (mode !== 3) {
         mode = 3;
         for (i = 0; i < document.getElementsByClassName('notMousedOver').length; i++) {
@@ -318,51 +352,68 @@ choose.addEventListener('click', function () {
         for (i = 0; i < document.getElementsByClassName('mousedOver').length; i++) {
             document.getElementsByClassName('mousedOver')[i].style.background = mouseOverColorIs(mode);
             }
+// CLICK CHOOSE AND CHANGE COLOR
     } 
 });
 
 // DRAWING EVENT LISTENER
 container.addEventListener("mouseover", function(event) {
-    if (draw) {
-        if (mode === 1) {
-            if (JSON.stringify(event.target.classList).search("mousedOver") === -1) {
+    if (on) {
+        if (eraser) {
+            event.target.classList.remove('mousedOver');
+            event.target.classList.add('notMousedOver');
+            event.target.style.background = backgroundColorIs(mode);
+        } else {
+            if (mode === 1) {
+                if (JSON.stringify(event.target.classList).search("mousedOver") === -1) {
+                    event.target.classList.remove('notMousedOver');
+                    event.target.classList.add('mousedOver');
+                    // need not grayscaled?
+                    event.target.classList.remove('notGrayscaled');
+                    event.target.style.background = mouseOverColorIs(mode);
+                } else {
+                    console.log(event.target.style.background);
+                    console.log(rgbToNumber(event.target.style.background));
+                    event.target.style.background = "rgb( " + (rgbToNumber(event.target.style.background)-50) + ", " + 
+                                                              (rgbToNumber(event.target.style.background)-50) + ", " +
+                                                              (rgbToNumber(event.target.style.background)-50) + ")";
+                }
+            }
+            else if (mode === 2) {
                 event.target.classList.remove('notMousedOver');
                 event.target.classList.add('mousedOver');
-                event.target.classList.remove('notGrayscaled');
                 event.target.style.background = mouseOverColorIs(mode);
-            } else {
                 console.log(event.target.style.background);
-                console.log(rgbToNumber(event.target.style.background));
-                event.target.style.background = "rgb( " + (rgbToNumber(event.target.style.background)-50) + ", " + 
-                                                          (rgbToNumber(event.target.style.background)-50) + ", " +
-                                                          (rgbToNumber(event.target.style.background)-50) + ")";
+            }
+            else if (mode === 3) {
+                event.target.classList.remove('notMousedOver');
+                event.target.classList.add('mousedOver');
+                event.target.style.background = mouseOverColorIs(mode);
+                console.log(event.target.style.background);
             }
         }
-        else if (mode === 2) {
-            event.target.classList.remove('notMousedOver');
-            event.target.classList.add('mousedOver');
-            event.target.style.background = mouseOverColorIs(mode);
-            console.log(event.target.style.background);
-        }
-        else if (mode === 3) {
-            event.target.classList.remove('notMousedOver');
-            event.target.classList.add('mousedOver');
-            event.target.style.background = mouseOverColorIs(mode);
-            console.log(event.target.style.background);
-        }
-        
     };
 });
 
 // EVENT LISTENER FOR TOGGLING DRAWING
 container.addEventListener("click", function () {
-    if (draw) {
-        draw = 0;
+    if (on) {
+        on = 0;
     } else {
-        draw = 1;
+        on = 1;
     }});
 
+// EVENT LISTENER FOR TOGGLING DRAWING
+const eraserButton = document.querySelector('#eraser');
+eraserButton.addEventListener('click', function () {
+    if (eraser) {
+        eraser = 0
+    } else {
+        eraser = 1;
+    }
+}); 
 
+// EVENT LISTENER RESET BUTTON
 const resetButton = document.querySelector('#reset');
 resetButton.addEventListener('click', function () {
     let area = squaresWide.value*squaresWide.value

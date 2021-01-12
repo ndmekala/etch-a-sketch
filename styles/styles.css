@@ -1,22 +1,56 @@
 #container {
     display: flex;
+    margin: 50px;
     background-color: white !important;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-left: auto;
-    margin-right: auto;
     width: 700px;
     height: 700px;
+    order: 2;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+#controls {
+    order: 1;
+    height: 700;
+    margin: 50px;
+}
+
+#bigcontainer {
+    display: flex;
+    /* flex-direction: row; */
+    /* flex-wrap: wrap; */
 }
 
 .item {
-    transition: 0.4s;
+    transition: .75s;
+}
+
+.biganimate {
+    animation-name: biglanding;
+    animation-duration: 2s;
+}
+
+@keyframes biglanding {
+    0% {
+
+    }
+
+    20% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1.0);
+    }
 }
 
 mark {
     display: inline-block;
     line-height: 0em;
     padding-bottom: 0.2em;
+    background-color: #00FF00
   }
 
 .notMousedOver {
@@ -26,22 +60,29 @@ mark {
 .mousedOver {
 }
 
-h3 {
+body {
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+button {
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+p {
     text-align: center;
+}
+
+h3 {
     font-family: 'IBM Plex Mono', monospace;
     font-weight: 200;
+    text-align: center;
 }
 
 h1 {
-    text-align: center;
     font-family: 'IBM Plex Mono', monospace;
-    font-weight: 200;
-}
-
-#squaresWide {
-    writing-mode: bt-lr;
-    -webkit-appearance: slider-vertical;
-    width: 8px;
-    height: 175px;
-    padding: 0 5px;
+    font-weight: 400;
+    text-transform: uppercase;
 }
