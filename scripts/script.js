@@ -192,39 +192,51 @@ squaresWide.addEventListener('change', function () {
 // EVENT LISTENERS FOR RGB SLIDER
 //bout to be qUirKy (like should it change when you arent in the mode??)
 redSlider.addEventListener('input', function() {
-    document.getElementById("letter1").style.color = mouseOverColorIs(3);
-    document.getElementById("letter2").style.color = mouseOverColorIs(3);
-    document.getElementById("letter3").style.color = mouseOverColorIs(3);
-    document.getElementById("letter4").style.color = mouseOverColorIs(3);
-    document.getElementById("letter5").style.color = mouseOverColorIs(3);
-    document.getElementById("letter6").style.color = mouseOverColorIs(3);
-    document.getElementById("letter7").style.color = mouseOverColorIs(3);
-    document.getElementById("letter8").style.color = mouseOverColorIs(3);
-    document.getElementById("letter9").style.color = mouseOverColorIs(3);
+    mode = 3;
+    document.getElementById("letter1").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter2").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter3").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter4").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter5").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter6").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter7").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter8").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter9").style.color = mouseOverColorIs(mode);
+    rainbow.style.borderColor = "rgb(0, 0, 0)"
+    grayscale.style.borderColor = "rgb(0, 0, 0)"
+    choose.style.borderColor = mouseOverColorIs(mode);
 });
 
 greenSlider.addEventListener('change', function() {
-    document.getElementById("letter1").style.color = mouseOverColorIs(3);
-    document.getElementById("letter2").style.color = mouseOverColorIs(3);
-    document.getElementById("letter3").style.color = mouseOverColorIs(3);
-    document.getElementById("letter4").style.color = mouseOverColorIs(3);
-    document.getElementById("letter5").style.color = mouseOverColorIs(3);
-    document.getElementById("letter6").style.color = mouseOverColorIs(3);
-    document.getElementById("letter7").style.color = mouseOverColorIs(3);
-    document.getElementById("letter8").style.color = mouseOverColorIs(3);
-    document.getElementById("letter9").style.color = mouseOverColorIs(3);
+    mode = 3;
+    document.getElementById("letter1").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter2").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter3").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter4").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter5").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter6").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter7").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter8").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter9").style.color = mouseOverColorIs(mode);
+    rainbow.style.borderColor = "rgb(0, 0, 0)"
+    grayscale.style.borderColor = "rgb(0, 0, 0)"
+    choose.style.borderColor = mouseOverColorIs(mode);
 });
 
 blueSlider.addEventListener('change', function() {
-    document.getElementById("letter1").style.color = mouseOverColorIs(3);
-    document.getElementById("letter2").style.color = mouseOverColorIs(3);
-    document.getElementById("letter3").style.color = mouseOverColorIs(3);
-    document.getElementById("letter4").style.color = mouseOverColorIs(3);
-    document.getElementById("letter5").style.color = mouseOverColorIs(3);
-    document.getElementById("letter6").style.color = mouseOverColorIs(3);
-    document.getElementById("letter7").style.color = mouseOverColorIs(3);
-    document.getElementById("letter8").style.color = mouseOverColorIs(3);
-    document.getElementById("letter9").style.color = mouseOverColorIs(3);
+    mode = 3;
+    document.getElementById("letter1").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter2").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter3").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter4").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter5").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter6").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter7").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter8").style.color = mouseOverColorIs(mode);
+    document.getElementById("letter9").style.color = mouseOverColorIs(mode);
+    rainbow.style.borderColor = "rgb(0, 0, 0)"
+    grayscale.style.borderColor = "rgb(0, 0, 0)"
+    choose.style.borderColor = mouseOverColorIs(mode);
 });
 
 function breakBox() {
@@ -290,15 +302,18 @@ function rgbToNumber(string) {
 // possible solution: add a “special” or “noTouchy” class to circumvent setting all to mouseOverColorIs(mode);
 const grayscale = document.querySelector('#grayscale');
 grayscale.addEventListener('click', function () {
-        document.getElementById("letter1").style.color = "rgb(225, 225, 225)";
-        document.getElementById("letter2").style.color = "rgb(175, 175, 175)";
-        document.getElementById("letter3").style.color = "rgb(125, 125, 125)";
-        document.getElementById("letter4").style.color = "rgb(75, 75, 75)";
-        document.getElementById("letter5").style.color = "rgb(25, 25, 25)";
-        document.getElementById("letter6").style.color = "rgb(75, 75, 75)";
-        document.getElementById("letter7").style.color = "rgb(125, 125, 125)";
-        document.getElementById("letter8").style.color = "rgb(175, 175, 175)";
-        document.getElementById("letter9").style.color = "rgb(225, 225, 225)";
+    rainbow.style.borderColor = "rgb(0, 0, 0)"
+    choose.style.borderColor = "rgb(0, 0, 0)"
+    grayscale.style.borderColor = mouseOverColorIs(1);
+    document.getElementById("letter1").style.color = "rgb(225, 225, 225)";
+    document.getElementById("letter2").style.color = "rgb(175, 175, 175)";
+    document.getElementById("letter3").style.color = "rgb(125, 125, 125)";
+    document.getElementById("letter4").style.color = "rgb(75, 75, 75)";
+    document.getElementById("letter5").style.color = "rgb(25, 25, 25)";
+    document.getElementById("letter6").style.color = "rgb(75, 75, 75)";
+    document.getElementById("letter7").style.color = "rgb(125, 125, 125)";
+    document.getElementById("letter8").style.color = "rgb(175, 175, 175)";
+    document.getElementById("letter9").style.color = "rgb(225, 225, 225)";
     if (mode !== 1) {
         
         mode = 1;
@@ -309,12 +324,13 @@ grayscale.addEventListener('click', function () {
             document.getElementsByClassName('mousedOver')[i].style.background = mouseOverColorIs(mode);
             }
     }    
-
-// CLICK and change to grayscale
 });
 
 const rainbow = document.querySelector('#rainbow');
 rainbow.addEventListener('click', function () {
+    grayscale.style.borderColor = "rgb(0, 0, 0)"
+    choose.style.borderColor = "rgb(0, 0, 0)"
+    rainbow.style.borderColor = mouseOverColorIs(2);
     mode = 2;
     document.getElementById("letter1").style.color = mouseOverColorIs(2);
     document.getElementById("letter2").style.color = mouseOverColorIs(2);
@@ -335,6 +351,9 @@ rainbow.addEventListener('click', function () {
 
 const choose = document.querySelector('#choose');
 choose.addEventListener('click', function () {
+    rainbow.style.borderColor = "rgb(0, 0, 0)"
+    grayscale.style.borderColor = "rgb(0, 0, 0)"
+    choose.style.borderColor = mouseOverColorIs(3);
     document.getElementById("letter1").style.color = mouseOverColorIs(3);
     document.getElementById("letter3").style.color = mouseOverColorIs(3);
     document.getElementById("letter2").style.color = mouseOverColorIs(3);
@@ -352,7 +371,6 @@ choose.addEventListener('click', function () {
         for (i = 0; i < document.getElementsByClassName('mousedOver').length; i++) {
             document.getElementsByClassName('mousedOver')[i].style.background = mouseOverColorIs(mode);
             }
-// CLICK CHOOSE AND CHANGE COLOR
     } 
 });
 
@@ -408,8 +426,10 @@ const eraserButton = document.querySelector('#eraser');
 eraserButton.addEventListener('click', function () {
     if (eraser) {
         eraser = 0
+        eraserButton.textContent = "Pen"
     } else {
         eraser = 1;
+        eraserButton.textContent = "Eraser"
     }
 }); 
 
