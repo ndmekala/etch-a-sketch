@@ -7,11 +7,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com"> 
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="styles/reset.css">
 </head>
 <body>
     <div id="bigcontainer">
         <div id="controls">
+            <div id="minidesign"></div>
             <h1>
                 <div>
                     <span id="letter1">P</span>
@@ -28,24 +28,29 @@
                 </div>
 
             </h1>
-            <h3><mark>Controls</mark></h3>
-                <p>Click within box to toggle tool on and off.</p> 
-                <p>Click button below to toggle active tool.</p>
+                <p>Click within box to toggle tool on and off. Click button below to toggle active tool.</p>
                 <p>
-                    <button id="reset">Reset</button>
                     <button type="button" id="eraser">Pen</button>
                 </p>
             <h3><mark>Grid</mark></h3>
-                <p><input type="range" id="squaresWide" name="squaresWide" min="1" max="100" value="29"><label for="squaresWide">Squares Per Side</label></p>
-            <h3><mark>Color Scheme</mark></h3>
-                <p><button id="grayscale" style="border: 2px solid rgb(225, 225, 225)">Grayscale</button>
-                <button id="rainbow">Rainbow</button>
-                <button id="choose">Choose</button></p>
-                <div>
-                    <p><input type="range" id="red" name="red" min="1" max="255" value="0"><label for="red">Red</label></p>
-                    <p><input type="range" id="green" name="green" min="1" max="255" value="255"><label for="green">Green</label></p>
-                    <p><input type="range" id="blue" name="blue" min="1" max="255" value="0"><label for="blue">Blue</label></p>
+                <button id="reset">Reset</button>
+                <div class="gridsliderbox">
+                    <div><label for="squaresWide">Grid</label></div>
+                    <div><input type="range" id="squaresWide" name="squaresWide" min="1" max="100" value="29" class="slider"></div>
                 </div>
+            <h3><mark>Colors</mark></h3>
+                <button id="grayscale" style="border: 2px solid rgb(225, 225, 225)">Grayscale</button>
+                <button id="rainbow">Random RGB</button>
+                <button id="choose">Choose RGB</button>
+                <div class="rgbsliderbox">
+                    <div><label for="red">Red</label></div>
+                    <div><input type="range" id="red" name="red" min="1" max="255" value="0" class="slider"></div>
+                    <div><label for="green">Green</label></div>
+                    <div><input type="range" id="green" name="green" min="1" max="255" value="255" class="slider"></div>
+                    <div><label for="blue">Blue</label></div>
+                    <div><input type="range" id="blue" name="blue" min="1" max="255" value="0" class="slider"></div>
+                </div>
+                <p></p><a href="https://github.com/ndmekala/etch-a-sketch">Repository</a></p>
         </div>
         <div id="container">
         </div>
