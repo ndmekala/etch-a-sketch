@@ -304,8 +304,6 @@ container.addEventListener("mouseover", function(event) {
                     event.target.classList.remove('notGrayscaled');
                     event.target.style.background = mouseOverColorIs(mode);
                 } else {
-                    console.log(event.target.style.background);
-                    console.log(rgbToNumber(event.target.style.background));
                     event.target.style.background = "rgb( " + (rgbToNumber(event.target.style.background)-50) + ", " + 
                                                               (rgbToNumber(event.target.style.background)-50) + ", " +
                                                               (rgbToNumber(event.target.style.background)-50) + ")";
@@ -315,13 +313,11 @@ container.addEventListener("mouseover", function(event) {
                 event.target.classList.remove('notMousedOver');
                 event.target.classList.add('mousedOver');
                 event.target.style.background = mouseOverColorIs(mode);
-                console.log(event.target.style.background);
             }
             else if (mode === 3) {
                 event.target.classList.remove('notMousedOver');
                 event.target.classList.add('mousedOver');
                 event.target.style.background = mouseOverColorIs(mode);
-                console.log(event.target.style.background);
             }
         }
     };
