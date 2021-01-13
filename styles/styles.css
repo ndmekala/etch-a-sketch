@@ -6,6 +6,7 @@
     flex-wrap: wrap;
     width: 700px;
     height: 700px;
+    min-width: 700px;
     order: 2;
     border: 1px solid black;
     box-sizing: border-box;
@@ -16,6 +17,8 @@
     height: 700;
     margin: 50px;
 }
+
+/* Add Media queries so that when browser shrinks, container order = 1, controls = 2 */
 
 #bigcontainer {
     display: flex;
