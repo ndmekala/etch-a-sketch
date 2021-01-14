@@ -165,7 +165,15 @@ squaresWide.addEventListener('change', function () {
 });
 
 // EVENT LISTENERS FOR RGB SLIDER
-redSlider.addEventListener('input', function() {
+redSlider.addEventListener('change', function() {
+    if (mode !== 3) {
+        mode = 3;
+        for (i = 0; i < document.getElementsByClassName('notMousedOver').length; i++) {
+            document.getElementsByClassName('notMousedOver')[i].style.background = backgroundColorIs(mode);
+            }
+        for (i = 0; i < document.getElementsByClassName('mousedOver').length; i++) {
+            document.getElementsByClassName('mousedOver')[i].style.background = mouseOverColorIs(mode);
+            }}
     mode = 3;
     document.getElementById("letter1").style.color = mouseOverColorIs(mode);
     document.getElementById("letter2").style.color = mouseOverColorIs(mode);
@@ -182,6 +190,14 @@ redSlider.addEventListener('input', function() {
 });
 
 greenSlider.addEventListener('change', function() {
+    if (mode !== 3) {
+        mode = 3;
+        for (i = 0; i < document.getElementsByClassName('notMousedOver').length; i++) {
+            document.getElementsByClassName('notMousedOver')[i].style.background = backgroundColorIs(mode);
+            }
+        for (i = 0; i < document.getElementsByClassName('mousedOver').length; i++) {
+            document.getElementsByClassName('mousedOver')[i].style.background = mouseOverColorIs(mode);
+            }}
     mode = 3;
     document.getElementById("letter1").style.color = mouseOverColorIs(mode);
     document.getElementById("letter2").style.color = mouseOverColorIs(mode);
@@ -198,6 +214,14 @@ greenSlider.addEventListener('change', function() {
 });
 
 blueSlider.addEventListener('change', function() {
+    if (mode !== 3) {
+        mode = 3;
+        for (i = 0; i < document.getElementsByClassName('notMousedOver').length; i++) {
+            document.getElementsByClassName('notMousedOver')[i].style.background = backgroundColorIs(mode);
+            }
+        for (i = 0; i < document.getElementsByClassName('mousedOver').length; i++) {
+            document.getElementsByClassName('mousedOver')[i].style.background = mouseOverColorIs(mode);
+            }}
     mode = 3;
     document.getElementById("letter1").style.color = mouseOverColorIs(mode);
     document.getElementById("letter2").style.color = mouseOverColorIs(mode);
