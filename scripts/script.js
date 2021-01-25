@@ -51,66 +51,50 @@ for (i=0; i <= 7; i++) {
     }
 }
 let qrText = [];
-function drawVerticalLineText(x,y,length) {
-    for (i=0; i < length; i++) {
-        qrText.push(29*(y+1+i)+x);
+function drawVerticalLineText(letterArray) {
+    for(let index=0; index < letterArray.length; index++) {
+        let pointData = letterArray[index]
+        let x = pointData[0]
+        let y = pointData[1]
+        let length = pointData[2]
+        for (let i=0; i < length; i++) {
+            qrText.push(29*(y+1+i)+x);
+        }
     }
 }
-//P
-drawVerticalLineText(5,7,5);
-drawVerticalLineText(6,7,1);
-drawVerticalLineText(6,9,1);
-drawVerticalLineText(7,7,1);
-drawVerticalLineText(7,9,1);
-drawVerticalLineText(8,8,1);
-//I
-drawVerticalLineText(10,7,5);
-//X
-drawVerticalLineText(12,7,2);
-drawVerticalLineText(12,10,2);
-drawVerticalLineText(13,9,1);
-drawVerticalLineText(14,7,2);
-drawVerticalLineText(14,10,2);
-//E
-drawVerticalLineText(16,7,5);
-drawVerticalLineText(17,7,1);
-drawVerticalLineText(17,9,1);
-drawVerticalLineText(17,11,1);
-drawVerticalLineText(18,7,1);
-drawVerticalLineText(18,9,1);
-drawVerticalLineText(18,11,1);
-drawVerticalLineText(19,7,1);
-drawVerticalLineText(19,11,1);
-//L
-drawVerticalLineText(21,7,5);
-drawVerticalLineText(22,11,1);
-drawVerticalLineText(23,11,1);
-//D
-drawVerticalLineText(5,14,5);
-drawVerticalLineText(6,14,1);
-drawVerticalLineText(6,18,1);
-drawVerticalLineText(7,14,1);
-drawVerticalLineText(7,18,1);
-drawVerticalLineText(8,15,3);
-//R
-drawVerticalLineText(10,14,5);
-drawVerticalLineText(11,14,1);
-drawVerticalLineText(11,16,1);
-drawVerticalLineText(12,14,1);
-drawVerticalLineText(12,16,1);
-drawVerticalLineText(13,15,1);
-drawVerticalLineText(13,17,2);
-//A
-drawVerticalLineText(15,15,4);
-drawVerticalLineText(16,14,1);
-drawVerticalLineText(16,16,1);
-drawVerticalLineText(17,15,4);
-//W
-drawVerticalLineText(19,14,4);
-drawVerticalLineText(20,18,1);
-drawVerticalLineText(21,17,1);
-drawVerticalLineText(22,18,1);
-drawVerticalLineText(23,14,4);
+
+const pArray = [[5,7,5],[6,7,1],[6,9,1],[7,7,1],[7,9,1],[8,8,1]]
+const eArray = [[16,7,5],[17,7,1],[17,9,1],[17,11,1],[18,7,1],[18,9,1],[18,11,1],[19,7,1],[19,11,1]]
+const lArray = [[21,7,5],[22,11,1],[23,11,1]]
+const dArray = [[5,14,5],[6,14,1],[6,18,1],[7,14,1],[7,18,1],[8,15,3]]
+const rArray = [[10,14,5],[11,14,1],[11,16,1],[12,14,1],[12,16,1],[13,15,1],[13,17,2]]
+const aArray = [[15,15,4],[16,14,1],[16,16,1],[17,15,4]]
+const wArray = [[19,14,4],[20,18,1],[21,17,1],[22,18,1],[23,14,4]]
+
+const pixelDrawData = [pArray,eArray,lArray,dArray,rArray,aArray,wArray]
+
+pixelDrawData.forEach(element => drawVerticalLineText(element));
+
+//example with object in an array
+function drawVerticalLineTextAlternative(letterArray){
+    for(let index=0; index < letterArray.length; index++) {
+        let pointData = letterArray[index]
+        for (let i=0; i < pointData.length; i++) {
+            qrText.push(29*(pointData.y+1+i)+pointData.x);
+        }
+    }
+}
+
+const iArray = [{x:10, y:7, length:5}]
+const xArray = [{x:12,y:7,length:2},{x:12,y:10,length:2},{x:13,y:9,length:1},{x:14,y:7,length:2},{x:14,y:10,length:2}]
+
+const pixelDrawDataAlt = [iArray,xArray]
+
+pixelDrawDataAlt.forEach(element => drawVerticalLineTextAlternative(element))
+//forEach is a helpful abstraction of a regular for statement
+//also familiarize yourself with 'map', 'reduce', and 'filter' which are really helpful methods when working with arrays. 
+//However, I think it's helpful to know how you would write a function youself (using 'for' and 'if' statements) that can do the same thing as these methods
+//end example
 
 
 buildBox(29);
@@ -312,6 +296,10 @@ choose.addEventListener('click', function () {
     } 
 });
 
+//I'm not a ui expert by any means but changing the border color based on the selected RGB is really nice touch. 
+//Same with the color change on Pixel Draw based on mode. 
+//Part of me wants you to make these details less subtle so people are more likely to notice them. But on the other hand I like how it looks now
+
 // DRAWING EVENT LISTENER
 container.addEventListener("mouseover", function(event) {
     if (on) {
@@ -384,7 +372,8 @@ function mouseOverColorIs(int) {
         let r = Math.floor(Math.random() * 255);
         let g = Math.floor(Math.random() * 255);
         let b = Math.floor(Math.random() * 255);
-        color = "rgb(" + r + ", " + g + ", " + b + ")";
+        // example with string interpolation. Doesn't really matter, just a little cleaner in my opinion
+        color = `rgb(${r},${g},${b})`;
         return color;
     } else if (int === 3) {
         let r = redSlider.value;
