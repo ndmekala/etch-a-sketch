@@ -51,67 +51,27 @@ for (i=0; i <= 7; i++) {
     }
 }
 let qrText = [];
-function drawVerticalLineText(x,y,length) {
-    for (i=0; i < length; i++) {
-        qrText.push(29*(y+1+i)+x);
+function drawVerticalLineText(array) {
+    for (i=0; i < array.length; i++) {
+        let lineObject = array[i];
+        for (j=0; j < lineObject.lineLength; j++) {
+            qrText.push(29*(lineObject.y+1+j) + lineObject.x);
+        }
     }
 }
-//P
-drawVerticalLineText(5,7,5);
-drawVerticalLineText(6,7,1);
-drawVerticalLineText(6,9,1);
-drawVerticalLineText(7,7,1);
-drawVerticalLineText(7,9,1);
-drawVerticalLineText(8,8,1);
-//I
-drawVerticalLineText(10,7,5);
-//X
-drawVerticalLineText(12,7,2);
-drawVerticalLineText(12,10,2);
-drawVerticalLineText(13,9,1);
-drawVerticalLineText(14,7,2);
-drawVerticalLineText(14,10,2);
-//E
-drawVerticalLineText(16,7,5);
-drawVerticalLineText(17,7,1);
-drawVerticalLineText(17,9,1);
-drawVerticalLineText(17,11,1);
-drawVerticalLineText(18,7,1);
-drawVerticalLineText(18,9,1);
-drawVerticalLineText(18,11,1);
-drawVerticalLineText(19,7,1);
-drawVerticalLineText(19,11,1);
-//L
-drawVerticalLineText(21,7,5);
-drawVerticalLineText(22,11,1);
-drawVerticalLineText(23,11,1);
-//D
-drawVerticalLineText(5,14,5);
-drawVerticalLineText(6,14,1);
-drawVerticalLineText(6,18,1);
-drawVerticalLineText(7,14,1);
-drawVerticalLineText(7,18,1);
-drawVerticalLineText(8,15,3);
-//R
-drawVerticalLineText(10,14,5);
-drawVerticalLineText(11,14,1);
-drawVerticalLineText(11,16,1);
-drawVerticalLineText(12,14,1);
-drawVerticalLineText(12,16,1);
-drawVerticalLineText(13,15,1);
-drawVerticalLineText(13,17,2);
-//A
-drawVerticalLineText(15,15,4);
-drawVerticalLineText(16,14,1);
-drawVerticalLineText(16,16,1);
-drawVerticalLineText(17,15,4);
-//W
-drawVerticalLineText(19,14,4);
-drawVerticalLineText(20,18,1);
-drawVerticalLineText(21,17,1);
-drawVerticalLineText(22,18,1);
-drawVerticalLineText(23,14,4);
 
+pArray = [{x: 5, y: 7, lineLength: 5}, {x: 6, y: 7, lineLength: 1}, {x: 6, y: 9, lineLength: 1}, {x: 7, y: 7, lineLength: 1}, {x: 7, y: 9, lineLength: 1}, {x: 8, y: 8, lineLength: 1}];
+iArray = [{x: 10, y: 7, lineLength: 5}];
+xArray = [{x: 12,y: 7,lineLength: 2}, {x:12, y:10, lineLength:2}, {x: 13,y: 9,lineLength: 1}, {x: 14, y: 7, lineLength: 2}, {x: 14, y: 10, lineLength: 2}]
+eArray = [{x: 16,y: 7,lineLength: 5},{x: 17,y: 7,lineLength: 1},{x: 17,y: 9,lineLength: 1},{x: 17,y: 11,lineLength: 1},{x: 18,y: 7,lineLength: 1},{x: 18,y: 9,lineLength: 1},{x: 18,y: 11,lineLength: 1},{x: 19,y: 7,lineLength: 1},{x: 19,y: 11,lineLength: 1},]
+lArray = [{x: 21,y: 7, lineLength: 5}, {x: 22,y: 11, lineLength: 1}, {x: 23,y: 11, lenlineLengthgth: 1}]
+dArray = [{x: 5,y: 14,lineLength: 5},{x: 6,y: 14,lineLength: 1},{x: 6,y: 18,lineLength: 1},{x: 7,y: 14,lineLength: 1},{x: 7,y: 18,lineLength: 1},{x: 8,y: 15,lineLength: 3}]
+rArray = [{x: 10,y: 14,lineLength: 5},{x: 11,y: 14,lineLength: 1},{x: 11,y: 16,lineLength: 1},{x: 12,y: 14,lineLength: 1},{x: 12,y: 16,lineLength: 1},{x: 13,y: 15,lineLength: 1},{x: 13,y: 17,lineLength: 2},]
+aArray = [{x: 15,y: 15,lineLength: 4},{x: 16,y: 14,lineLength: 1},{x: 16,y: 16,lineLength: 1},{x: 17,y: 15,lineLength: 4},]
+wArray = [{x: 19,y: 14,lineLength: 4},{x: 20,y: 18,lineLength: 1},{x: 21,y: 17,lineLength: 1},{x: 22,y: 18,lineLength: 1},{x: 23,y: 14,lineLength: 4},]
+
+letterData = [pArray, iArray, xArray, xArray, eArray, lArray, dArray, rArray, aArray, wArray];
+letterData.forEach(element => drawVerticalLineText(element));
 
 buildBox(29);
 landingImage();
