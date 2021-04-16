@@ -3,3 +3,4 @@
 * Live preview is [here](https://ndmekala.github.io/etch-a-sketch/).
 * Site which enables you to draw over a grid using your mouse!
 * Optimized for desktop.
+* I feature this project in my [portfolio](https://www.meka.la/).
